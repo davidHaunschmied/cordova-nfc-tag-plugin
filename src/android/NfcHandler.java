@@ -80,17 +80,6 @@ public class NfcHandler {
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
         final PendingIntent pendingIntent = PendingIntent.getActivity(activity.getApplicationContext(), 0, intent, 0);
-
-        IntentFilter filter = new IntentFilter(NfcAdapter.ACTION_TECH_DISCOVERED);
-        String[][] techList = new String[][]{
-			new String [] {NdefFormatable.class.getName(), NfcV.class.getName()}
-			};
-        try {
-            filter.addDataType("*/*");
-        }catch (IntentFilter.MalformedMimeTypeException e){
-            throw new RuntimeException("ERROR", e);
-        }
-        IntentFilter[] filters = new IntentFilter[]{filter};
         adapter.enableForegroundDispatch(activity, pendingIntent, null, null);
     }
 
